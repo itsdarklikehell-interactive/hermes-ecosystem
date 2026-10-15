@@ -45,8 +45,12 @@ A stable release is a set of lanes. A build lane produces something users get; a
 ```
 # The default: everything except macOS Intel and Termux
 python scripts/release.py release --commit "$(git rev-parse origin/main)" --remote origin
-# Only the Windows bundles (and the Store bundle) and the Docker image, no tests
+# Only the signed Windows bundles and the Docker image, no tests
 python scripts/release.py release --commit "$(git rev-parse origin/main)" --only windows,docker --remote origin
+# Everything except the signed Windows pipeline (the Store bundle still builds and is submitted)
+python scripts/release.py release --commit "$(git rev-parse origin/main)" --without windows --remote origin
+# Only the Store bundle: no Azure signing anywhere
+python scripts/release.py release --commit "$(git rev-parse origin/main)" --only windows-store --remote origin
 # Everything, plus macOS Intel, without the install/update E2E
 python scripts/release.py release --commit "$(git rev-parse origin/main)" --with macos-intel --without install-e2e --remote origin
 ```
@@ -69,7 +73,13 @@ build and publish the Docker image
 
 on
 
-Windows x64 and arm64 MSIX, the universal bundle and the Store bundle (they build together)
+signed Windows x64 and arm64 MSIX and the universal bundle, which feed the update channel
+
+`windows-store`
+
+on
+
+the unsigned Microsoft Store bundle, submitted to Partner Center (needs no Azure signing)
 
 `macos-arm64`
 
@@ -117,13 +127,13 @@ Lanes are independent switches. A job runs only when every lane it needs is on (
 
 The lane set is written into the claim message (`"lanes": [...]`), never passed as a workflow input. `admit` reads it from the claim and emits two outputs: `lanes` (one flag per lane) and `jobs` (one run flag per lane-controlled job). Every such job's `if` reads its own `jobs` entry, so the lane table is the only place that says what runs. A recovery rerun cannot change it. To change a lane, `abandon` the attempt and cut again.
 
-The gates stay strict. `scripts.releases.stable gate` reads the lanes and requires each job they remove to report `skipped`, and every other gated job to report `success`. A job that ran although a lane removes it also blocks the release. A claim cut before lanes existed (`skipBundles`, `skipTests`, `includeMacosIntel`, `includeTermux`) reads as the lane set that gated the same jobs.
+The gates stay strict. `scripts.releases.stable gate` reads the lanes and requires each job they remove to report `skipped`, and every other gated job to report `success`. A job that ran although a lane removes it also blocks the release. A claim cut before lanes existed (`skipBundles`, `skipTests`, `includeMacosIntel`, `includeTermux`) reads as the lane set that gated the same jobs. A claim without `lanesRevision` was cut when `windows` also meant the Store bundle, so its `windows` reads as `windows` plus `windows-store`.
 
 What a release publishes follows what it built:
 
 -   **Docker.** With `docker` off no image is built or promoted, and the final tag records `dockerManifestDigest: null`.
 -   **Bundles.** With no desktop or Termux lane there is no candidate manifest, and the final tag records `candidateManifestSha256: null`.
--   **The desktop channel moves only for the full desktop set** (`windows` and `macos-arm64`). A partial set still stages its packages, records a candidate manifest with exactly the targets it built, and submits the Store bundle when `windows` is on. The protected R2 stable head, the App Installer and macOS feeds, the APT channel, downloads page, `releases/stable/release-candidates.json` and the signed-package baseline stay on the previous full release. Source checkouts on the official repository follow `releases/stable/release-candidates.json`, so they stay too.
+-   **The desktop channel moves only for the full desktop set** (`windows` and `macos-arm64`). A partial set still stages its packages, records a candidate manifest with exactly the targets it built, and submits the Store bundle when `windows-store` is on. A Store-only release has no package rows, only the Store bundle file, and moves no channel. The protected R2 stable head, the App Installer and macOS feeds, the APT channel, downloads page, `releases/stable/release-candidates.json` and the signed-package baseline stay on the previous full release. Source checkouts on the official repository follow `releases/stable/release-candidates.json`, so they stay too.
 -   **Finished.** A release that advances the desktop channel is finished when the protected R2 head names it. One that only moves Docker is finished when the `stable` alias carries the digest its final tag binds. One that moves no channel is finished once it is public. The sequencer uses these markers to decide which releases still need their publication pass.
 -   **No tests.** The candidate manifest records each native smoke as `skipped`, never as passed, and every reader that knows the claim (`complete` and the protected R2 advance) refuses a manifest whose smoke results disagree with the claim's `smoke` lane. The next full release uses that manifest as its upgrade baseline like any other. Cut a normal release after an untested one.
 
