@@ -32,7 +32,7 @@ delegation.pause
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 gateway-wide: lists every chat's running agents and the process's async jobs
 
@@ -46,7 +46,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 per-session setting (gateway handler)
 
@@ -60,7 +60,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 messaging-only
 
@@ -74,7 +74,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/battery`
 
@@ -86,7 +86,7 @@ sidecar: system.battery (preference not saved)
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -100,7 +100,7 @@ prompt.background
 
 action: background
 
-refused
+slash.exec: refused
 
 `/blueprint` (/bp)
 
@@ -112,7 +112,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/branch` (/fork)
 
@@ -136,7 +136,7 @@ sidecar: browser.manage
 
 action: browser
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -150,7 +150,7 @@ prompt.btw
 
 action: btw
 
-refused
+slash.exec: refused
 
 `/bundles`
 
@@ -162,7 +162,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/busy`
 
@@ -174,7 +174,7 @@ canonical route
 
 unavailable: terminal
 
-refused
+slash.exec
 
 per-session setting (gateway handler)
 
@@ -188,7 +188,7 @@ local
 
 action: new
 
-refused
+session.mutate reset
 
 client-local (cli\_only)
 
@@ -202,7 +202,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 per-session setting (gateway handler)
 
@@ -216,7 +216,7 @@ slash.exec
 
 action: help
 
-refused
+slash.exec
 
 messaging-only
 
@@ -242,7 +242,7 @@ slash.exec: refused
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -256,7 +256,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 TUI session: main's live /context with the category table
 
@@ -270,7 +270,7 @@ local
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -284,7 +284,7 @@ slash.exec
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 TUI session: bare `/cron` and `/cron list [--all]` read the profile's jobs; client-local (cli\_only)
 
@@ -298,7 +298,7 @@ slash.exec
 
 unavailable: advanced
 
-refused
+slash.exec
 
 `/debug`
 
@@ -310,7 +310,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 uploads logs to a public paste
 
@@ -324,7 +324,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 messaging-only
 
@@ -338,7 +338,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/egress`
 
@@ -350,7 +350,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/export`
 
@@ -362,7 +362,7 @@ slash.exec: refused
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -376,7 +376,7 @@ config.get, config.set
 
 unavailable: advanced
 
-refused
+slash.exec
 
 per-session setting (gateway handler)
 
@@ -390,7 +390,7 @@ local (preference not saved)
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -404,7 +404,7 @@ slash.exec
 
 unavailable: terminal
 
-refused
+slash.exec
 
 per-session setting (gateway handler)
 
@@ -418,7 +418,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/handoff`
 
@@ -430,7 +430,7 @@ slash.exec: refused
 
 action: handoff
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -444,7 +444,7 @@ slash.exec: refused
 
 action: hatch
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -458,7 +458,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/help`
 
@@ -470,7 +470,7 @@ local
 
 action: help
 
-refused
+local
 
 `/history`
 
@@ -482,7 +482,7 @@ local
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -496,7 +496,7 @@ local
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -510,7 +510,7 @@ slash.exec: refused
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -524,7 +524,7 @@ config.get, config.set
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -538,7 +538,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/insights`
 
@@ -550,7 +550,7 @@ slash.exec
 
 unavailable: advanced
 
-refused
+slash.exec
 
 `/journey` (/learning, /memory-graph)
 
@@ -562,7 +562,7 @@ local
 
 action: journey
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -576,7 +576,7 @@ slash.exec
 
 unavailable: advanced
 
-refused
+slash.exec
 
 `/learn`
 
@@ -588,7 +588,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/login`
 
@@ -600,7 +600,7 @@ slash.exec
 
 unavailable: settings
 
-refused
+slash.exec
 
 `/loop` (/proactive)
 
@@ -612,7 +612,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/memory`
 
@@ -624,7 +624,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/moa`
 
@@ -636,7 +636,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/model`
 
@@ -660,7 +660,7 @@ local
 
 action: new
 
-refused
+session.mutate reset
 
 `/palette`
 
@@ -672,7 +672,7 @@ slash.exec: refused
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -686,7 +686,7 @@ local
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -700,7 +700,7 @@ slash.exec: refused
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 messaging-only
 
@@ -714,7 +714,7 @@ canonical route
 
 slash.exec
 
-refused
+slash.exec
 
 per-session setting (gateway handler)
 
@@ -728,7 +728,7 @@ slash.exec
 
 action: pet
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -742,7 +742,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/platform`
 
@@ -754,7 +754,7 @@ slash.exec: refused
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 messaging adapters; `pause`/`resume` mutate them
 
@@ -768,7 +768,7 @@ slash.exec
 
 unavailable: terminal
 
-refused
+slash.exec
 
 client-local (cli\_only)
 
@@ -782,7 +782,7 @@ slash.exec
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -796,7 +796,7 @@ slash.exec
 
 action: profile
 
-refused
+slash.exec
 
 `/prompt` (/compose)
 
@@ -808,7 +808,7 @@ local
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -822,7 +822,7 @@ local
 
 action: queue
 
-refused
+prompt.submit
 
 `/quit` (/exit)
 
@@ -834,7 +834,7 @@ local
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -848,7 +848,7 @@ canonical route
 
 action: reasoning
 
-refused
+slash.exec
 
 per-session setting (gateway handler)
 
@@ -862,7 +862,7 @@ local
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -876,7 +876,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/reload`
 
@@ -888,7 +888,7 @@ canonical route
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -902,7 +902,7 @@ refused: not available yet
 
 unavailable: advanced
 
-refused
+slash.exec: refused
 
 `/reload-skills` (/reload\_skills)
 
@@ -914,7 +914,7 @@ commands.catalog, skills.reload
 
 unavailable: advanced
 
-refused
+slash.exec: refused
 
 `/restart`
 
@@ -926,7 +926,7 @@ slash.exec: refused
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 messaging-only
 
@@ -940,7 +940,7 @@ local
 
 picker: session
 
-refused
+slash.exec: refused
 
 switches the messaging chat's session; local clients resume by id
 
@@ -954,7 +954,7 @@ canonical route
 
 action: retry
 
-refused
+session.mutate rewind + resubmit
 
 `/review`
 
@@ -966,7 +966,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/rollback`
 
@@ -978,7 +978,7 @@ rollback.diff, rollback.list, rollback.restore
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 restores filesystem checkpoints
 
@@ -992,7 +992,7 @@ session.save
 
 rpc session.save
 
-refused
+slash.exec: refused
 
 writes an export file on the gateway host
 
@@ -1006,7 +1006,7 @@ local
 
 picker: session
 
-refused
+slash.exec: refused
 
 messaging origin-scoped listing (`/sessions all` needs a messaging admin)
 
@@ -1020,7 +1020,7 @@ slash.exec: refused
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 messaging-only
 
@@ -1034,7 +1034,7 @@ slash.exec; sidecar: skills.manage
 
 slash.exec
 
-refused
+slash.exec
 
 client-local (cli\_only)
 
@@ -1048,7 +1048,7 @@ config.get, config.set
 
 action: skin
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -1062,7 +1062,7 @@ slash.exec: refused
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -1076,7 +1076,7 @@ slash.exec: refused
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 messaging-only
 
@@ -1090,7 +1090,7 @@ canonical route
 
 slash.exec (rpc fallback)
 
-refused
+slash.exec
 
 TUI session: main's `Hermes TUI Status`
 
@@ -1104,7 +1104,7 @@ local (preference not saved)
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -1118,7 +1118,7 @@ canonical route
 
 action: steer
 
-refused
+session.steer
 
 `/stop`
 
@@ -1130,7 +1130,7 @@ canonical route
 
 action: stop
 
-refused
+slash.exec: refused
 
 `/subgoal`
 
@@ -1142,7 +1142,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/subscription` (/upgrade)
 
@@ -1154,7 +1154,7 @@ sidecar: subscription.state
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -1168,7 +1168,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/timestamps` (/ts)
 
@@ -1180,7 +1180,7 @@ slash.exec: refused
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -1194,7 +1194,7 @@ canonical route
 
 action: title
 
-refused
+session.mutate rename (bare: slash.exec)
 
 `/tools`
 
@@ -1206,7 +1206,7 @@ refused: not available yet
 
 slash.exec: refused
 
-refused
+session.info
 
 client-local (cli\_only)
 
@@ -1220,7 +1220,7 @@ slash.exec
 
 unavailable: terminal
 
-refused
+slash.exec
 
 client-local (cli\_only)
 
@@ -1234,7 +1234,7 @@ slash.exec: refused
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 messaging-only
 
@@ -1248,7 +1248,7 @@ sidecar: billing.state
 
 slash.exec
 
-refused
+slash.exec
 
 `/undo`
 
@@ -1260,7 +1260,7 @@ canonical route
 
 action: undo
 
-refused
+session.mutate rewind
 
 `/update`
 
@@ -1272,7 +1272,7 @@ local
 
 unavailable: terminal
 
-refused
+slash.exec: refused
 
 `/usage`
 
@@ -1284,7 +1284,7 @@ canonical route
 
 slash.exec
 
-refused
+slash.exec
 
 `/verbose`
 
@@ -1296,7 +1296,7 @@ config.set
 
 unavailable: terminal
 
-refused
+slash.exec
 
 per-session setting (gateway handler)
 
@@ -1310,7 +1310,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/voice`
 
@@ -1322,7 +1322,7 @@ canonical route
 
 unavailable: composer-voice
 
-refused
+slash.exec
 
 per-session setting (gateway handler)
 
@@ -1336,7 +1336,7 @@ local
 
 action: wake
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -1350,7 +1350,7 @@ slash.exec
 
 slash.exec
 
-refused
+slash.exec
 
 `/worktree`
 
@@ -1362,7 +1362,7 @@ slash.exec: refused
 
 slash.exec: refused
 
-refused
+slash.exec: refused
 
 client-local (cli\_only)
 
@@ -1376,6 +1376,6 @@ config.set
 
 action: yolo
 
-refused
+slash.exec
 
 per-session setting (gateway handler)
