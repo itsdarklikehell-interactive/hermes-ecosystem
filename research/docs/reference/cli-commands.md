@@ -2805,6 +2805,10 @@ Search the Hermes plugin catalog (matches entry names, descriptions, and declare
 
 Re-pin catalog installs to the reviewed catalog SHA, or update a custom Git install from its recorded source/feed. PM validates active-plugin dependencies before code publication. Explicit custom pins move only with `install --force --ref <new-commit>`.
 
+`update [--yes]`
+
+With no name: list every installed plugin that has an update `update <name>` can apply (catalog re-pin or Git pull) plus the ones it skips and why, then ask `Update all N? [Y/n]` and update each through the single-plugin path (per-plugin consent prompts still apply). One failure does not stop the rest; exits 1 if any failed. Without a terminal nothing is updated unless `--yes` is passed; `--yes` keeps consent fail-closed (new capabilities stay ungranted).
+
 `remove <name>` (aliases: `rm`, `uninstall`)
 
 Remove an installed plugin.
