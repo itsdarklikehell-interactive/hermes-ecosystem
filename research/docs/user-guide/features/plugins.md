@@ -785,7 +785,7 @@ Legacy key (`plugins.entries.<id>.…`)
 
 `allow_platform_actions`
 
-A gate is open when _either_ the capability is granted _or_ the legacy key is set — existing configs keep working unchanged.
+A gate is open when _either_ the capability is granted _or_ the legacy key is set — existing configs keep working unchanged. `llm.side_question` has no legacy key: it is open only when declared and granted through the consent flow.
 
 Not a sandbox
 

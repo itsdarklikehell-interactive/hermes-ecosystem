@@ -592,7 +592,7 @@ Observer
 
 Successful, non-interrupted turn finalization; return ignored.
 
-`session_id`, `task_id`, `turn_id`, `user_message`, `assistant_response`, `conversation_history`, `model`, `platform`
+`session_id`, `task_id`, `turn_id`, `user_message`, `assistant_response`, `conversation_history`, `model`, `platform`, `side_question_token`
 
 Full prompt, response, and history.
 
@@ -1427,6 +1427,12 @@ The model identifier
 `str`
 
 Where the session is running
+
+`side_question_token`
+
+`str | None`
+
+One-use token for [`ctx.side_question`](/docs/developer-guide/plugin-llm-access#asking-the-sessions-own-agent-ctxside_question), shared by every plugin of the session's profile; `None` unless a loaded plugin holds the `llm.side_question` capability, and always `None` for cron runs and subagent turns
 
 **Fires:** In `agent/turn_finalizer.py` (`finalize_turn()`, called by `run_conversation()` in `agent/conversation_loop.py`), after the tool loop exits with a final response. Guarded by `if final_response and not interrupted` — so it does **not** fire when the user interrupts mid-turn or the agent hits the iteration limit without producing a response.
 
@@ -3033,7 +3039,7 @@ Delivery platform (`cli`, `telegram`, `discord`, …; empty when unset).
 
 **Use cases:** Apply a personality/vocabulary transform (pirate-speak, Spongebob), redact user-specific identifiers from the final text, append a project-specific signature footer, enforce a house style guide without burning tokens on SOUL instructions.
 
-When CLI streaming is enabled, an append-only transform is printed after the streamed body. A transform that replaces the response is printed in full after the streamed body, labeled as a post-stream transformation, so replacement content is never silently lost.
+When CLI streaming is enabled, an append-only transform is printed after the streamed body. A transform that replaces the response is printed in full after the streamed body, labeled as a post-stream transformation, so replacement content is never silently lost. In the TUI, the desktop app and messaging chats that edit a streamed message in place, the streamed reply is replaced by the rewrite when the turn completes. The hook runs on the finished text, so the unrewritten reply is visible while it streams.
 
 ```
 import os, re
@@ -3067,7 +3073,7 @@ Fires for a failed provider attempt with status/retry timing, an `error` object,
 
 #### `pre_auxiliary_call` / `post_auxiliary_call`
 
-Auxiliary LLM calls — session titling, context compression, MoA advisors and the aggregator, vision, approval classification, memory and other side tasks — run outside the main tool-calling loop and do **not** fire `pre_api_request` / `post_api_request` (those stay turn-scoped, so a trace-per-turn plugin never sees side traffic by accident). Subscribe to `pre_auxiliary_call` / `post_auxiliary_call` instead: they fire once per physical provider attempt (retries and fallbacks included) with the same payload shape plus `aux_task` (the task name, e.g. `title_generation`, `compression`, `moa_aggregator`, `vision`). `session_id` / `task_id` / `turn_id` are the parent turn's when the call runs under one, empty otherwise; `api_request_id` (`aux-…`) is shared by every attempt of one logical call and `retry_count` distinguishes them. Both are observer-only and fail-open: a raising or timed-out callback is logged and the auxiliary task proceeds. `post_auxiliary_call` carries `error` / `error_type` when the attempt raised and `streaming: True` (with `usage`/`response` `None`) when the response is handed back as a stream.
+Auxiliary LLM calls — session titling, context compression, MoA advisors and the aggregator, vision, approval classification, memory and other side tasks — run outside the main tool-calling loop and do **not** fire `pre_api_request` / `post_api_request` (those stay turn-scoped, so a trace-per-turn plugin never sees side traffic by accident). Subscribe to `pre_auxiliary_call` / `post_auxiliary_call` instead: they fire once per physical provider attempt (retries and fallbacks included) with the same payload shape plus `aux_task` (the task name, e.g. `title_generation`, `compression`, `moa_aggregator`, `vision`, `plugin_side_question` for a plugin's [`ctx.side_question`](/docs/developer-guide/plugin-llm-access#asking-the-sessions-own-agent-ctxside_question), which also carries the asking plugin's `plugin_id`). `session_id` / `task_id` / `turn_id` are the parent turn's when the call runs under one, empty otherwise; `api_request_id` (`aux-…`) is shared by every attempt of one logical call and `retry_count` distinguishes them. Both are observer-only and fail-open: a raising or timed-out callback is logged and the auxiliary task proceeds. `post_auxiliary_call` carries `error` / `error_type` when the attempt raised and `streaming: True` (with `usage`/`response` `None`) when the response is handed back as a stream.
 
 ### `on_skill_lifecycle`
 
