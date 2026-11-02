@@ -76,6 +76,15 @@ runtime:
 
 The default is `4096`. Hermes clamps the target to the operating system's hard limit and never lowers a process that already has a higher soft limit. Set the value to `0`, `false`, or `null` to disable the adjustment. On Windows and in sandboxes where the limit cannot be changed, startup continues without changing the limit.
 
+On Linux with glibc, the gateway, `hermes serve` and `hermes dashboard` also cap the number of malloc arenas the process may create:
+
+```
+runtime:
+  malloc_arena_max: 4
+```
+
+glibc otherwise hands every new thread its own arena, up to eight per CPU core, and keeps each arena's freed pages; a long-running gateway with many short-lived worker threads ends up holding hundreds of MB of free-but-unreturned memory. The cap is set at startup, before the server starts any thread, and applies only to the Hermes server process itself — commands it runs (terminal tools, MCP servers, builds) keep glibc's default. An explicit `MALLOC_ARENA_MAX` (or `GLIBC_TUNABLES=glibc.malloc.arena_max=…`) takes precedence, whether exported before launch or set in the profile's `.env`. Set the value to `0`, `false`, or `null` to keep glibc's default. Other platforms ignore it.
+
 ## Database Settings
 
 The `database:` section controls how Hermes opens its SQLite state database (`state.db`), which stores sessions, messages, and gateway routing:
