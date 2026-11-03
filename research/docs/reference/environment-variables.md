@@ -724,21 +724,15 @@ Description
 
 `NOTION_API_KEY`
 
-`notion`
+Teams meeting pipeline
 
-Notion integration token.
+Notion integration token for the Notion sink.
 
 `LINEAR_API_KEY`
 
 `linear`
 
 Linear personal API key.
-
-`AIRTABLE_API_KEY`
-
-`airtable`
-
-Airtable personal access token.
 
 `TENOR_API_KEY`
 
