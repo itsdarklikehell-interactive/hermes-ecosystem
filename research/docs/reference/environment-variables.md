@@ -1226,6 +1226,10 @@ Accept messages from other Slack bots: `none` (default), `mentions`, or `all`. T
 
 Require an explicit @mention for Slack thread replies while preserving top-level free-response channels
 
+`SLACK_THREAD_FOLLOWUP_SILENCE`
+
+Let a bare silence marker stand on unaddressed Slack channel-thread replies instead of posting the unexpected-silence notice (default `false`)
+
 `SLACK_HOME_CHANNEL`
 
 Default Slack channel for cron delivery
@@ -2062,7 +2066,7 @@ Absolute path to a Python interpreter for the backend, checked before Electron a
 
 `HERMES_DESKTOP_DEV_SERVER`
 
-Vite dev-server URL the Electron shell loads instead of the packaged bundle (e.g. `http://127.0.0.1:5174`). Set automatically by `npm run dev`; only relevant when hacking on the app.
+Vite dev-server URL the Electron shell loads instead of the packaged bundle (e.g. `http://127.0.0.1:5174`). Set automatically by `npm run dev`; only relevant when hacking on the app. A backend that inherits it also trusts that renderer's origin for CORS and WebSocket upgrades.
 
 `HERMES_DESKTOP_CDP_PORT`
 
