@@ -1922,14 +1922,6 @@ auxiliary:
     timeout: 30
     language: ""
 
-  # Skills hub — skill matching and search
-  skills_hub:
-    provider: "auto"
-    model: ""
-    base_url: ""
-    api_key: ""
-    timeout: 30
-
   # MCP tool dispatch
   mcp:
     provider: "auto"
@@ -2004,7 +1996,7 @@ Model name for that provider
 
 (Optional) Custom OpenAI-compatible endpoint
 
-`fallback_chain` is available on any auxiliary task — `compression`, `vision`, `approval`, `skills_hub`, `mcp`, etc.
+`fallback_chain` is available on any auxiliary task — `compression`, `vision`, `approval`, `mcp`, etc.
 
 ### Native vision embed budgets (top-level `vision:`)
 
