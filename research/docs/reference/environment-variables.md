@@ -2064,11 +2064,11 @@ Absolute path to a Python interpreter for the backend, checked before Electron a
 
 `HERMES_DESKTOP_DEV_SERVER`
 
-Vite dev-server URL the Electron shell loads instead of the packaged bundle (e.g. `http://127.0.0.1:5174`). Set automatically by `npm run dev`; only relevant when hacking on the app. A backend that inherits it also trusts that renderer's origin for CORS and WebSocket upgrades.
+Vite dev-server URL the Electron shell loads instead of the packaged bundle (e.g. `http://127.0.0.1:5174`). Set automatically by `pnpm run dev`; only relevant when hacking on the app. A backend that inherits it also trusts that renderer's origin for CORS and WebSocket upgrades.
 
 `HERMES_DESKTOP_CDP_PORT`
 
-Overrides the Chrome DevTools Protocol port the renderer exposes on `127.0.0.1` for DOM/CSS inspection tooling (default `9222`). Dev-server runs (`npm run dev`, `hgui`) open it automatically; a packaged app never does, and no value here changes that. Set to `off` to disable it on a dev run. Anything that can reach the port can execute code in the renderer.
+Overrides the Chrome DevTools Protocol port the renderer exposes on `127.0.0.1` for DOM/CSS inspection tooling (default `9222`). Dev-server runs (`pnpm run dev`, `hgui`) open it automatically; a packaged app never does, and no value here changes that. Set to `off` to disable it on a dev run. Anything that can reach the port can execute code in the renderer.
 
 `HERMES_DESKTOP_NVIDIA_SWIFTSHADER`
 
@@ -2976,7 +2976,7 @@ Launch the [TUI](/docs/user-guide/tui) instead of the classic CLI when set to `1
 
 `HERMES_TUI_DIR`
 
-Path to a prebuilt `ui-tui/` directory (must contain `dist/entry.js` and populated `node_modules`). Used by distros and Nix to skip the first-launch `npm install`.
+Path to a prebuilt `ui-tui/` directory (must contain `dist/entry.js` and populated `node_modules`). Used by distros and Nix to skip the first-launch `pnpm install`.
 
 `HERMES_TUI_RESUME`
 
