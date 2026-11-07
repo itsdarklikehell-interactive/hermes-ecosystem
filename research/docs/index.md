@@ -155,6 +155,6 @@ Common questions and solutions
 Machine-readable entry points to this documentation:
 
 -   **[`/llms.txt`](/docs/assets/files/llms-ad6f7449304783d24c9c0a6038e835f3.txt)** — curated index of every doc page with short descriptions. ~17 KB, safe to load into an LLM context.
--   **[`/llms-full.txt`](/docs/assets/files/llms-full-cb71e7b6ed40941dd4fd7702044ef274.txt)** — every doc page concatenated into a single markdown file for one-shot ingestion. ~1.8 MB.
+-   **[`/llms-full.txt`](/docs/assets/files/llms-full-8998126af1582c0fd3b8dfca01b07a7c.txt)** — every doc page concatenated into a single markdown file for one-shot ingestion. ~1.8 MB.
 
 Both files also resolve at `/docs/llms.txt` and `/docs/llms-full.txt`. Generated fresh on every deploy.
