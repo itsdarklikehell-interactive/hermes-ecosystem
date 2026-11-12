@@ -544,6 +544,12 @@ The owning profile's `state.db` / `config.yaml` / `processes.json`
 
 —
 
+Reply streaming (`streaming:` block: `enabled`, `transport`, edit pacing, cursor; also the `gateway.streaming` spelling)
+
+The served profile's own `config.yaml`, loaded once at gateway start
+
+The streaming default (off) — a profile with no `streaming:` block does not stream because the default profile does; enable it with `hermes -p <name> config set streaming.enabled true`
+
 What is **shared** by design: the process, its PID/lock and `gateway_state.json` (default home), the one HTTP listener, and the `profile_routes` table (declared on the default profile).
 
 ### Which profiles are served
@@ -621,7 +627,7 @@ On WhatsApp and WhatsApp Cloud, a `chat_id` route matches across user-identity f
 
 `profile_routes` requires `gateway.multiplex_profiles: true`; with multiplexing off the routes are ignored. If an explicit route matches but its target profile is not installed (or was deleted), the gateway rejects that ingress and logs the route and target. It does not run the default profile. Traffic that matches no route keeps the historical default-profile behavior.
 
-Cron jobs owned by a routed profile deliver through the shared bot too, but only to targets an enabled route with a `chat_id`/`thread_id` maps to that profile (a `guild_id + chat_id` route qualifies its channel) — a routed profile's job targeting an unrouted chat (or a chat routed to another profile) is never sent through the shared bot. Guild-only routes do not qualify a cron target; add a `chat_id` route for the delivery channel. Routes declaring `user_id` do not qualify either: cron has no authenticated inbound sender, so they need a separate location-only route. The routed profile does not need its own `platforms.<platform>` block for this: the shared bot's authorization comes from the route, not from the satellite's config.
+Cron jobs owned by a routed profile deliver through the shared bot too, but only to targets an enabled route with a `chat_id`/`thread_id` maps to that profile (a `guild_id + chat_id` route qualifies its channel) — a routed profile's job targeting an unrouted chat (or a chat routed to another profile) is never sent through the shared bot. Guild-only routes do not qualify a cron target; add a `chat_id` route for the delivery channel. Routes declaring `user_id` do not qualify either: cron has no authenticated inbound sender, so they need a separate location-only route. Telegram DMs are the exception: a Telegram DM's chat id is the user's id, so a `user_id` route qualifies cron delivery to that user's DM without an extra route. The routed profile does not need its own `platforms.<platform>` block for this: the shared bot's authorization comes from the route, not from the satellite's config.
 
 ## Start, stop, or restart all gateways at once
 
