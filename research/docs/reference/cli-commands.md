@@ -3575,6 +3575,10 @@ Force a **full** pre-update backup for this run: the quick state snapshot plus a
 
 Assume yes for interactive prompts such as config migration and stash restore. API-key entry is skipped; run `hermes config migrate` separately for those.
 
+`--force`
+
+Linux/macOS: stop every gateway this update owns at once instead of waiting for in-flight work to drain (choose it when starting the update; it cannot interrupt an update already waiting): running turns, background subagents and tool/background processes are interrupted, a gateway still alive after ~12 s is killed, then the update runs and the gateways restart on the new code. On Windows it only lets the update proceed when another `hermes.exe` is detected; the Windows pause still drains (it does not bypass the venv-holder guard; see `--force-venv`).
+
 Additional behavior:
 
 -   **Gateway restart.** After a successful update, Hermes attempts to restart all running gateway profiles of the home being updated (its root and every `profiles/<name>` under it) automatically so they pick up the new code. Gateways and `hermes-gateway*` services that belong to a different `HERMES_HOME` on the same machine — another install, or a scratch home running `hermes update` — are named in the output and left alone. Use `hermes gateway restart` when you want to restart a gateway without applying an update.
