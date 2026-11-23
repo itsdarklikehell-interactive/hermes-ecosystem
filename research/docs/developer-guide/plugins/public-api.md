@@ -960,6 +960,18 @@ plugin-llm-access.md § From the plugin's frontend: a plugin RPC method (`force=
 
 user-guide/features/plugins.md § Plugin code inside the gateway: which client created the session
 
+`hermes_cli.plugin_session`
+
+`turn_client`
+
+user-guide/features/plugins.md § Plugin code inside the gateway: which client sent the turn and who is attached
+
+`hermes_cli.plugin_session`
+
+`session_viewers`
+
+user-guide/features/plugins.md § Plugin code inside the gateway: which client sent the turn and who is attached
+
 `agent.file_safety`
 
 `get_read_block_error`
