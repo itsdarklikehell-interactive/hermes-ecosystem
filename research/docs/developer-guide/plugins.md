@@ -1947,6 +1947,10 @@ Fired by
 
 `tools/human_input_hooks.py` `human_input_request`
 
+`on_session_prompt` / `on_session_prompt_settled`
+
+`gateway/session_prompt_hooks.py`, called from `gateway/session_authority.py` `SessionAuthority.register_approval` / `register_clarify`, `gateway/session_pending_controls.py` (a prompt leaving `PendingControls.pending`) and `gateway/session_server_requests.py` `_ask`
+
 `on_room_member_activity`
 
 `tui_gateway/hosted_room_member_activity.py` `emit_room_member_activity`
