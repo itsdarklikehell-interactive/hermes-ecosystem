@@ -986,6 +986,12 @@ user-guide/features/plugins.md § Plugin code inside the gateway: which client s
 
 `hermes_cli.plugin_session`
 
+`turn_origin`
+
+user-guide/features/plugins.md § Plugin code inside the gateway: which client sent the turn and who is attached
+
+`hermes_cli.plugin_session`
+
 `session_viewers`
 
 user-guide/features/plugins.md § Plugin code inside the gateway: which client sent the turn and who is attached
